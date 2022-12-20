@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE6161422951A4B800D607B3 /* NSMutableAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6161412951A4B800D607B3 /* NSMutableAttributedStringExtension.swift */; };
+		CEA2DB3D294B0DDE00F38446 /* SecurityData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEA2DB3B294B0DDE00F38446 /* SecurityData.xcdatamodeld */; };
 		CEAE68A62948887A00D50DC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE68A52948887A00D50DC5 /* AppDelegate.swift */; };
 		CEAE68A82948887A00D50DC5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE68A72948887A00D50DC5 /* SceneDelegate.swift */; };
 		CEAE68AA2948887A00D50DC5 /* ReadDBFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE68A92948887A00D50DC5 /* ReadDBFileViewController.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE6161412951A4B800D607B3 /* NSMutableAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedStringExtension.swift; sourceTree = "<group>"; };
+		CEA2DB3C294B0DDE00F38446 /* SecurityCoredataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SecurityCoredataModel.xcdatamodel; sourceTree = "<group>"; };
 		CEAE68A22948887A00D50DC5 /* ReadingDBFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingDBFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAE68A52948887A00D50DC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEAE68A72948887A00D50DC5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 		CEAE68992948887A00D50DC5 = {
 			isa = PBXGroup;
 			children = (
+				CEA2DB3B294B0DDE00F38446 /* SecurityData.xcdatamodeld */,
 				CEAE68A42948887A00D50DC5 /* ReadingDBFile */,
 				CEAE68BB2948887C00D50DC5 /* ReadingDBFileTests */,
 				CEAE68C52948887C00D50DC5 /* ReadingDBFileUITests */,
@@ -154,6 +159,7 @@
 			children = (
 				CEAE68D8294888DA00D50DC5 /* GenericTableView.swift */,
 				CEAE68DA2948890500D50DC5 /* ReusableCell.swift */,
+				CE6161412951A4B800D607B3 /* NSMutableAttributedStringExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -316,10 +322,12 @@
 			files = (
 				CEAE68DB2948890500D50DC5 /* ReusableCell.swift in Sources */,
 				CEAE68AA2948887A00D50DC5 /* ReadDBFileViewController.swift in Sources */,
+				CE6161422951A4B800D607B3 /* NSMutableAttributedStringExtension.swift in Sources */,
 				CEAE68D9294888DA00D50DC5 /* GenericTableView.swift in Sources */,
 				CEAE68E0294889A300D50DC5 /* DataCell.swift in Sources */,
 				CEAE68DD2948893700D50DC5 /* SecurityMasterModel.swift in Sources */,
 				CEAE68A62948887A00D50DC5 /* AppDelegate.swift in Sources */,
+				CEA2DB3D294B0DDE00F38446 /* SecurityData.xcdatamodeld in Sources */,
 				CEAE68A82948887A00D50DC5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +664,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CEA2DB3B294B0DDE00F38446 /* SecurityData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CEA2DB3C294B0DDE00F38446 /* SecurityCoredataModel.xcdatamodel */,
+			);
+			currentVersion = CEA2DB3C294B0DDE00F38446 /* SecurityCoredataModel.xcdatamodel */;
+			path = SecurityData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CEAE689A2948887A00D50DC5 /* Project object */;
 }

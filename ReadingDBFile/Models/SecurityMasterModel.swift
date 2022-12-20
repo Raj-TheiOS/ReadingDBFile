@@ -9,7 +9,7 @@ import Foundation
 
 class SecurityMasterModel {
  
-  //  var ID: Int
+    var ID: Int?
     var SCRIPTID: String?
     var TCS_TOKEN_ID: String?
     var ODIN_TOKEN_ID: String?
@@ -23,9 +23,9 @@ class SecurityMasterModel {
     var STRIKEPRICE: String?
     var OPTIONTYPE: String?
 
-    init(SCRIPTID: String?, TCS_TOKEN_ID: String?, ODIN_TOKEN_ID: String?, SEGMENT: String?, EXCHANGE: String?, ASL_ALLOWED: String?, EXCHANGE_SYMBOL: String?,  ISIN_CODE: String?, CONAME: String?, EXPIRYDATE: String?, STRIKEPRICE: String?, OPTIONTYPE: String?) {
+    init(id: Int?, SCRIPTID: String?, TCS_TOKEN_ID: String?, ODIN_TOKEN_ID: String?, SEGMENT: String?, EXCHANGE: String?, ASL_ALLOWED: String?, EXCHANGE_SYMBOL: String?,  ISIN_CODE: String?, CONAME: String?, EXPIRYDATE: String?, STRIKEPRICE: String?, OPTIONTYPE: String?) {
         
-     //   self.ID = id
+        self.ID = id
         self.SCRIPTID = SCRIPTID
         self.TCS_TOKEN_ID = TCS_TOKEN_ID
         self.ODIN_TOKEN_ID = ODIN_TOKEN_ID

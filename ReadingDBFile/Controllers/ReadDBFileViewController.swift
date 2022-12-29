@@ -294,7 +294,11 @@ class ReadDBFileViewController: UIViewController {
 extension ReadDBFileViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
-        self.view.activityStartAnimating(activityColor: .magenta, backgroundColor: .white)
+        
+        /*
+         
+         // MARK: Approach 1
+         self.view.activityStartAnimating(activityColor: .magenta, backgroundColor: .white)
 
         var filteredData = [SecurityData]()
         if string.isEmpty{
@@ -320,25 +324,60 @@ extension ReadDBFileViewController: UITextFieldDelegate {
 
             self.dataTable.reloadData()
         }
+         */
 
-        /*
+        
+        // MARK: Approach 2
          if string.isEmpty{
              search = String(search.dropLast())
          }else{
              search=textField.text!+string
          }
         if search.count > 0{
-            let predicate = NSPredicate(format: "SELF.searchable CONTAINS[c] %@", search)
+            let predicate = NSPredicate(format: "SELF.exchangeSymbol CONTAINS[c] %@", search)
             let securityData  = (allData as NSArray).filtered(using: predicate) as! [SecurityData]
-            self.setUpTableCell(data: securityData)
+            datasourceTable.array = securityData
+            self.dataTable.reloadData()
         }else{
-            self.setUpTableCell(data: allData)
+            datasourceTable.array = allData
+            self.dataTable.reloadData()
         }
-        */
         
         self.dataTable.reloadData()
         return true
     }
+
+
+}
+
+extension ReadDBFileViewController: UISearchBarDelegate {
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.count == 0 {
+            self.setUpTableCell(data: allData)
+            return
+        }
+        
+        /*
+        // MARK: Approach 1
+        self.getRegexString(searchString: searchText.lowercased())
+        var filteredData = [SecurityData]()
+        print("search :", searchText, "regex :", self.regex)
+        for obj in self.allData {
+            let searchable = obj.exchangeSymbol
+            if self.checkSearchStringCharHas(compareString: (searchable ?? "").lowercased()) {
+                filteredData.append(obj)
+            }
+        }
+        self.view.activityStopAnimating()
+        self.datasourceTable.array = filteredData
+        self.dataTable.reloadData()
+        */
+        
+        // MARK: Approach 2
+        self.searchDataFromCoreData(searchString: searchText)
+    }
+    
     
     func getRegexString(searchString: String) {
         var str :String = ""
@@ -358,32 +397,34 @@ extension ReadDBFileViewController: UITextFieldDelegate {
         let isValid = predicate.evaluate(with: compareString)
         return isValid
     }
-}
-
-extension ReadDBFileViewController: UISearchBarDelegate {
-    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.view.activityStartAnimating(activityColor: .magenta, backgroundColor: .white)
-
-        if searchText.count == 0 {
-            datasourceTable.array = allData
-            self.dataTable.reloadData()
-            self.view.activityStopAnimating()
-
-            return
-        }
+    
+    // MARK:- searching data from coredata
+    func searchDataFromCoreData(searchString: String) {
         
-        self.getRegexString(searchString: searchText.lowercased())
         var filteredData = [SecurityData]()
-        print("search :", searchText, "regex :", regex)
-        for obj in allData {
-            let searchable = obj.searchable
-            if self.checkSearchStringCharHas(compareString: (searchable ?? "").lowercased()) {
-                filteredData.append(obj)
+
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SecurityData")
+     
+        let searchPredicate = NSPredicate(format: "SELF.searchable CONTAINS[c] %@", searchString)
+        fetchRequest.predicate = searchPredicate
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            filteredData  = results as! [SecurityData]
+
+            self.setUpTableCell(data: filteredData)
+            self.dataTable.reloadData()
+            print("SecurityMasterModel count : ", filteredData.count)
+            
+            for obj in filteredData {
+                print("SecurityMasterModel Searchable : ", obj.searchable)
+
             }
+
+        }catch let err as NSError {
+            print(err.debugDescription)
         }
-        self.view.activityStopAnimating()
-        datasourceTable.array = filteredData
-        self.dataTable.reloadData()
     }
 }
 

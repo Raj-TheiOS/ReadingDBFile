@@ -68,10 +68,9 @@ class DataCell: UITableViewCell, ReusableCell {
             NSMutableAttributedString()
                 .normal(" Segment: ")
                 .bold(" \(object?.segment ?? "NA") ")
-                .normal("  Strike Price: ")
-                .bold("\(object?.strikePrice ?? "NA")")
-                .normal("  TCS Token Id: ")
-                .bold("\(object?.tcsTokenId ?? "NA")")
+                .normal("  Searchable: ")
+                .bold("\(object?.searchable ?? "NA")")
+                
 
             }
         /*

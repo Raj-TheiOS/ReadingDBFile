@@ -34,10 +34,6 @@ extension UIView {
         activityIndicator.startAnimating()
         self.isUserInteractionEnabled = false
         
-        // var imageView : UIImageView
-        // imageView  = UIImageView(frame:CGRect(x: 15, y: 15, width: 60, height: 60))
-        // imageView.image = UIImage.gif(name: "gif-loader")
-        // loadingView.addSubview(imageView)
         let textLabel = UILabel(frame: CGRect(x: 0, y: 70, width: 100, height: 21))
         textLabel.textColor = UIColor.gray
         

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,12 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5b9-ic-ejF">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="187" width="414" height="675"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DataCell" rowHeight="149" id="Wdg-fT-vn6" customClass="DataCell" customModule="ReadingDBFile" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="149"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="149"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wdg-fT-vn6" id="QPE-cf-Hh2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
@@ -114,23 +115,56 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbz-ng-0bs">
+                                <rect key="frame" x="10" y="53" width="394" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVQ-OV-tTP">
+                                <rect key="frame" x="20" y="137" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3n9-5r-GNV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tZr-em-scy">
+                                <rect key="frame" x="20" y="76" width="374" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="vCJ-7D-4Pg"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5b9-ic-ejF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7NF-1s-aAm"/>
+                            <constraint firstAttribute="trailing" secondItem="Kbz-ng-0bs" secondAttribute="trailing" constant="10" id="BK2-eI-3CY"/>
+                            <constraint firstItem="tZr-em-scy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Eln-n4-m2B"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gVQ-OV-tTP" secondAttribute="trailing" constant="20" id="IK3-hC-mwV"/>
+                            <constraint firstItem="5b9-ic-ejF" firstAttribute="top" secondItem="gVQ-OV-tTP" secondAttribute="bottom" constant="10" id="Pxu-Xc-Z75"/>
+                            <constraint firstItem="gVQ-OV-tTP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Qmy-8i-pRf"/>
+                            <constraint firstItem="gVQ-OV-tTP" firstAttribute="top" secondItem="tZr-em-scy" secondAttribute="bottom" constant="5" id="STR-ds-28L"/>
+                            <constraint firstItem="Kbz-ng-0bs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="UUj-2o-jb7"/>
+                            <constraint firstItem="tZr-em-scy" firstAttribute="top" secondItem="Kbz-ng-0bs" secondAttribute="bottom" constant="5" id="VWA-zd-Cal"/>
                             <constraint firstItem="5b9-ic-ejF" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Vvl-1H-i60"/>
-                            <constraint firstItem="5b9-ic-ejF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bjx-8T-Kki"/>
+                            <constraint firstItem="Kbz-ng-0bs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="dLe-kU-h8i"/>
                             <constraint firstItem="5b9-ic-ejF" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ihZ-zh-pd2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tZr-em-scy" secondAttribute="trailing" constant="20" id="tDT-Ad-azd"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dataTable" destination="5b9-ic-ejF" id="935-Je-frU"/>
+                        <outlet property="searchBar" destination="tZr-em-scy" id="miN-07-gbi"/>
+                        <outlet property="tfSearch" destination="gVQ-OV-tTP" id="KUg-GZ-r7b"/>
+                        <outlet property="timerLbl" destination="Kbz-ng-0bs" id="9ST-pz-ky4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="82.366071428571431"/>
+            <point key="canvasLocation" x="177" y="78"/>
         </scene>
     </scenes>
     <resources>

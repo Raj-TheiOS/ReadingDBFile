@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SecurityData" representedClassName="SecurityData" syncable="YES" codeGenerationType="class">
         <attribute name="aslAllowed" optional="YES" attributeType="String"/>
+        <attribute name="aslHcutPcnt" optional="YES" attributeType="String"/>
+        <attribute name="assetClass" optional="YES" attributeType="String"/>
+        <attribute name="closePrice" optional="YES" attributeType="String"/>
+        <attribute name="cmotsCoCode" optional="YES" attributeType="String"/>
         <attribute name="coname" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" optional="YES" attributeType="String"/>
+        <attribute name="dprHigh" optional="YES" attributeType="String"/>
+        <attribute name="dprLow" optional="YES" attributeType="String"/>
         <attribute name="exchange" optional="YES" attributeType="String"/>
+        <attribute name="exchangeSecurityId" optional="YES" attributeType="String"/>
+        <attribute name="exchangeSerires" optional="YES" attributeType="String"/>
+        <attribute name="exchangeStatus" optional="YES" attributeType="String"/>
         <attribute name="exchangeSymbol" optional="YES" attributeType="String"/>
         <attribute name="expiryDate" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="highPrice" optional="YES" attributeType="String"/>
+        <attribute name="illiquidSec" optional="YES" attributeType="String"/>
+        <attribute name="instrumentType" optional="YES" attributeType="String"/>
         <attribute name="isinCode" optional="YES" attributeType="String"/>
+        <attribute name="lotSize" optional="YES" attributeType="String"/>
+        <attribute name="lowPrice" optional="YES" attributeType="String"/>
+        <attribute name="nriAllowed" optional="YES" attributeType="String"/>
         <attribute name="odInTokenId" optional="YES" attributeType="String"/>
+        <attribute name="openPrice" optional="YES" attributeType="String"/>
         <attribute name="optionType" optional="YES" attributeType="String"/>
         <attribute name="scriptId" optional="YES" attributeType="String"/>
+        <attribute name="searchable" optional="YES" attributeType="String"/>
+        <attribute name="searchPriority" optional="YES" attributeType="String"/>
         <attribute name="segment" optional="YES" attributeType="String"/>
         <attribute name="strikePrice" optional="YES" attributeType="String"/>
         <attribute name="tcsTokenId" optional="YES" attributeType="String"/>
+        <attribute name="tickSize" optional="YES" attributeType="String"/>
+        <attribute name="tSettDay" optional="YES" attributeType="String"/>
+        <attribute name="underlying" optional="YES" attributeType="String"/>
+        <attribute name="updatedDate" optional="YES" attributeType="String"/>
     </entity>
-    <elements>
-        <element name="SecurityData" positionX="-63" positionY="-18" width="128" height="224"/>
-    </elements>
 </model>

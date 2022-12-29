@@ -32,7 +32,7 @@ class DataCell: UITableViewCell, ReusableCell {
             self.oneLbl.attributedText =
             NSMutableAttributedString()
                 .orangeHighlight(" Id: ")
-                .blackHighlight(" \(object?.id ?? 0) ")
+                .blackHighlight(" \(object?.scriptId ?? "") ")
                 .normal("   Asl Allowed: ")
                 .bold("\(object?.aslAllowed ?? "NA")")
             

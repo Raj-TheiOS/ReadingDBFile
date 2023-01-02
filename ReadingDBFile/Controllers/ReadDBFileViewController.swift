@@ -19,6 +19,7 @@ class ReadDBFileViewController: UIViewController {
     @IBOutlet weak var tfSearch: UITextField!
     @IBOutlet weak var timerLbl: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var countLabel: UILabel!
     
     private weak var displayLink: CADisplayLink?
     private var startTime: CFTimeInterval?
@@ -29,6 +30,10 @@ class ReadDBFileViewController: UIViewController {
     
     var search:String=""
     fileprivate var regex = ""
+    var fetchOffSet = 0
+    var searchText: String = ""
+    var filteredArrrayData = [SecurityData]()
+    var latestArrrayData = [SecurityData]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -272,6 +277,12 @@ class ReadDBFileViewController: UIViewController {
     
     // MARK:- loading data in cell
     func setUpTableCell(data: [SecurityData]) {
+        self.countLabel.text = "\(data.count) Results found"
+
+        print(datasourceTable.isScrolled)
+        datasourceTable.isScrolled = data.count == 0 ? true : false
+        print(datasourceTable.isScrolled)
+
         datasourceTable.isContextMenu = true
         datasourceTable.emptyMessage = "Data not available!"
         datasourceTable.array = data
@@ -284,6 +295,11 @@ class ReadDBFileViewController: UIViewController {
             dataCell.object = data[index]
         }
         datasourceTable.didScroll = {
+            print("scrolled")
+            if self.latestArrrayData.count >= 10 {
+                self.fetchOffSet = self.fetchOffSet + 10
+                self.searchDataFromCoreData(searchString: self.searchText, isScrolling: true)
+            }
         }
         datasourceTable.didSelect = {cell, index in
         }
@@ -328,17 +344,17 @@ extension ReadDBFileViewController: UITextFieldDelegate {
 
         
         // MARK: Approach 2
-         if string.isEmpty{
+         if string.isEmpty {
              search = String(search.dropLast())
-         }else{
+         }else {
              search=textField.text!+string
          }
-        if search.count > 0{
+        if search.count > 0 {
             let predicate = NSPredicate(format: "SELF.exchangeSymbol CONTAINS[c] %@", search)
             let securityData  = (allData as NSArray).filtered(using: predicate) as! [SecurityData]
             datasourceTable.array = securityData
             self.dataTable.reloadData()
-        }else{
+        }else {
             datasourceTable.array = allData
             self.dataTable.reloadData()
         }
@@ -355,6 +371,7 @@ extension ReadDBFileViewController: UISearchBarDelegate {
         
         if searchText.count == 0 {
             self.setUpTableCell(data: allData)
+            self.dataTable.reloadData()
             return
         }
         
@@ -375,7 +392,7 @@ extension ReadDBFileViewController: UISearchBarDelegate {
         */
         
         // MARK: Approach 2
-        self.searchDataFromCoreData(searchString: searchText)
+        self.searchDataFromCoreData(searchString: searchText, isScrolling: false)
     }
     
     
@@ -399,28 +416,39 @@ extension ReadDBFileViewController: UISearchBarDelegate {
     }
     
     // MARK:- searching data from coredata
-    func searchDataFromCoreData(searchString: String) {
+    func searchDataFromCoreData(searchString: String, isScrolling: Bool) {
+        
+        self.latestArrrayData.removeAll()
         
         var filteredData = [SecurityData]()
 
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SecurityData")
      
-        let searchPredicate = NSPredicate(format: "SELF.searchable CONTAINS[c] %@", searchString)
+        self.fetchOffSet =  isScrolling ? fetchOffSet: 0
+        
+        let searchPredicate = NSPredicate(format: "SELF.searchable CONTAINS[c] %@", self.searchBar.text ?? "")
         fetchRequest.predicate = searchPredicate
-
+        fetchRequest.fetchLimit = 10
+        fetchRequest.fetchOffset =  fetchOffSet
+        
+        print("fetchOffSet :", fetchOffSet, "Search :", self.searchBar.text ?? "")
+        
         do {
             let results = try context.fetch(fetchRequest)
             filteredData  = results as! [SecurityData]
 
-            self.setUpTableCell(data: filteredData)
-            self.dataTable.reloadData()
-            print("SecurityMasterModel count : ", filteredData.count)
-            
-            for obj in filteredData {
-                print("SecurityMasterModel Searchable : ", obj.searchable)
+            latestArrrayData = filteredData
+            print("results count : ", results.count)
 
+            if isScrolling == true {
+                self.filteredArrrayData.append(contentsOf: filteredData)
+            }else {
+                self.filteredArrrayData = filteredData
             }
+            
+            self.setUpTableCell(data: filteredArrrayData)
+            self.dataTable.reloadData()
 
         }catch let err as NSError {
             print(err.debugDescription)

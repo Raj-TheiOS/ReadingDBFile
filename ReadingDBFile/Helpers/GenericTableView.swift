@@ -64,10 +64,18 @@ class GenericTableView<T: UITableViewCell>: NSObject, UITableViewDataSource, UIT
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !isScrolled){
+            self.isScrolled = true
+            didScroll()
+        }
+
+        /*
         if (scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height && !isScrolled {
             didScroll()
             isScrolled = true
         }
+        */
     }
 }
 // MARK:- Empty Message with Image

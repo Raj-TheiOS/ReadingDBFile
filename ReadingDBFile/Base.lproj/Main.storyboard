@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5b9-ic-ejF">
-                                <rect key="frame" x="0.0" y="187" width="414" height="675"/>
+                                <rect key="frame" x="0.0" y="166.5" width="414" height="695.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -122,9 +122,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVQ-OV-tTP">
-                                <rect key="frame" x="20" y="137" width="374" height="40"/>
+                                <rect key="frame" x="20" y="156.5" width="374" height="0.0"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="3n9-5r-GNV"/>
+                                    <constraint firstAttribute="height" id="3n9-5r-GNV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -136,26 +136,36 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vCJ-7D-4Pg"/>
                                 </connections>
                             </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKv-c2-cKB">
+                                <rect key="frame" x="20" y="137" width="374" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5b9-ic-ejF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7NF-1s-aAm"/>
                             <constraint firstAttribute="trailing" secondItem="Kbz-ng-0bs" secondAttribute="trailing" constant="10" id="BK2-eI-3CY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UKv-c2-cKB" secondAttribute="trailing" constant="20" id="Bvh-Zm-gN8"/>
                             <constraint firstItem="tZr-em-scy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Eln-n4-m2B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gVQ-OV-tTP" secondAttribute="trailing" constant="20" id="IK3-hC-mwV"/>
+                            <constraint firstItem="gVQ-OV-tTP" firstAttribute="top" secondItem="UKv-c2-cKB" secondAttribute="bottom" constant="5" id="JTE-84-JYG"/>
                             <constraint firstItem="5b9-ic-ejF" firstAttribute="top" secondItem="gVQ-OV-tTP" secondAttribute="bottom" constant="10" id="Pxu-Xc-Z75"/>
                             <constraint firstItem="gVQ-OV-tTP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Qmy-8i-pRf"/>
-                            <constraint firstItem="gVQ-OV-tTP" firstAttribute="top" secondItem="tZr-em-scy" secondAttribute="bottom" constant="5" id="STR-ds-28L"/>
                             <constraint firstItem="Kbz-ng-0bs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="UUj-2o-jb7"/>
                             <constraint firstItem="tZr-em-scy" firstAttribute="top" secondItem="Kbz-ng-0bs" secondAttribute="bottom" constant="5" id="VWA-zd-Cal"/>
                             <constraint firstItem="5b9-ic-ejF" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Vvl-1H-i60"/>
+                            <constraint firstItem="UKv-c2-cKB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bL4-Y5-iIM"/>
                             <constraint firstItem="Kbz-ng-0bs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="dLe-kU-h8i"/>
+                            <constraint firstItem="UKv-c2-cKB" firstAttribute="top" secondItem="tZr-em-scy" secondAttribute="bottom" constant="5" id="gzj-37-Brg"/>
                             <constraint firstItem="5b9-ic-ejF" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ihZ-zh-pd2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tZr-em-scy" secondAttribute="trailing" constant="20" id="tDT-Ad-azd"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countLabel" destination="UKv-c2-cKB" id="rvl-ft-TaX"/>
                         <outlet property="dataTable" destination="5b9-ic-ejF" id="935-Je-frU"/>
                         <outlet property="searchBar" destination="tZr-em-scy" id="miN-07-gbi"/>
                         <outlet property="tfSearch" destination="gVQ-OV-tTP" id="KUg-GZ-r7b"/>

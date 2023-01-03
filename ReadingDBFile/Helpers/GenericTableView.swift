@@ -78,6 +78,7 @@ class GenericTableView<T: UITableViewCell>: NSObject, UITableViewDataSource, UIT
         */
     }
 }
+
 // MARK:- Empty Message with Image
 extension UITableView {
 
